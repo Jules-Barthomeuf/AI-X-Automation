@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdAIstra - Build A Brand Effortlessly With AI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,400&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #0a0a0a, #151515);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px;
+            width: 100%;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+        }
+
+        header {
+            padding: 20px 0;
+            background: #0a0a0a;
+            position: fixed;
+            width: 100vw;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+            left: 50%;
+            transform: translateX(-50%);
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 32px;
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .login-signup {
+            text-decoration: none;
+            color: #ffffff;
+            margin-right: 60px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .login-signup:hover {
+            color: #016e0a;
+            transform: scale(1.1);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 20px 0 0;
+            background: linear-gradient(230deg, #000001, #000301);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: slideUp 1s ease-out;
+            width: 100vw;
+            margin: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-weight: 700;
+            font-size: 72px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero p {
+            font-weight: 300;
+            font-size: 24px;
+            color: #ffffff;
+            margin-bottom: 40px;
+            animation: slideUp 1.5s ease-out 0.5s backwards;
+        }
+
+        .hero-particle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: rgba(0, 0, 128, 0.3);
+            border-radius: 50%;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+            100% { transform: translateY(0) scale(1); opacity: 0.5; }
+        }
+
+        .premium-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.85);
+            padding: 40px;
+            border-radius: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 20px 40px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 1, 0, 0.3);
+            z-index: 1000;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            max-width: 450px;
+            width: 90%;
+            min-height: 250px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .premium-popup.show {
+            opacity: 1;
+        }
+
+        .popup-content {
+            position: relative;
+            z-index: 1001;
+        }
+
+        .popup-message {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 70px;
+            text-shadow: 0px;
+            line-height: 1.4;
+        }
+
+        .button-group {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .premium-button {
+            padding: 18px 35px;
+            background: linear-gradient(250deg, #1e1ecc, #30b34a);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 20px;
+            flex: 20;
+            box-shadow: rgba(30, 179, 74, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .premium-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 179, 74, 0.6);
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(48, 179, 74, 0.7);
+        }
+
+        .cta-button {
+            padding: 12px 40px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 22px;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            max-width: 500px;
+            margin: 10px 0;
+            margin-top: 100px;
+            transition: transform 0.6s, box-shadow 0.6s;
+            border-radius: 150px
+        }
+
+        .cta-vision {
+            background: linear-gradient(250deg, #1e1ecc, #30b34a);
+            color: #ffffff;
+            box-shadow: 0 0 25px rgba(40, 214, 48, 0.8);
+            animation: pulse 1.5s infinite ease-in-out;
+            border: none; /* Removed border */
+        }
+
+        .cta-vision:hover {
+            background: linear-gradient(250deg, #1e1ecc, #30b34a); /* Match gradient on hover */
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgb(42, 180, 72);
+        }
+
+        .cta-generator {
+            background: linear-gradient(250deg, #1e1ecc, #30b34a);
+            box-shadow: 25px linear-gradient(250deg, #1e1ecc, #30b34a);
+            animation: pulse 1.5s infinite ease-in-out;
+            border: 0px solid rgb(234, 229, 229); /* Border matches background */
+        }
+
+        .cta-generator:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgb(2, 109, 0);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 15px linear-gradient(250deg, #1e1ecc, #30b34a); }
+            50% { box-shadow: 0 0 25px linear-gradient(250deg, #1e1ecc, #30b34a); }
+            100% { box-shadow: 0 0 15px linear-gradient(250deg, #1e1ecc, #30b34a); }
+        }
+
+        .features {
+            padding: 50px 40px;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            animation: fadeInUp 1.5s ease-out;
+            margin-top: -150px;
+            position: relative;
+            z-index: 10;
+            max-width: 1440px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feature-card {
+            background: linear-gradient(180deg, #1e1ecc, #30b34a);
+            padding: 50px;
+            border-radius: 25px;
+            border: 1px solid #2a2a2a;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: zoomIn 1.5s ease-out backwards;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            position: relative;
+            max-width: 300px;
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .feature-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 30px rgba(0, 0, 128, 0.5);
+        }
+
+        .feature-card h3 {
+            font-weight: 600;
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .feature-card p {
+            font-weight: 300;
+            font-size: 18px;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon {
+            font-size: 60px;
+            color: #6A1B9A;
+            margin-bottom: 20px;
+        }
+
+        .why-choose {
+            padding: 50px 60px;
+            background: #000000;
+            text-align: center;
+            animation: fadeInUp 1.5s ease-out 1.5s backwards;
+            position: relative;
+            overflow: hidden;
+            width: 300%;
+            margin: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-sizing: border-box;
+        }
+
+        .why-choose h2 {
+            font-weight: 700;
+            font-size: 48px;
+            margin-bottom: 60px;
+            color: #ffffff;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            animation: pulseText 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseText {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .why-card {
+            background: linear-gradient(180deg, #1e1ecc, #30b34a);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 20px auto;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            max-width: 350px;
+            animation: slideIn 1.5s ease-out backwards;
+            box-shadow: 0 10px 30px rgba(0, 0, 128, 0.3);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .why-card:hover {
+            box-shadow: 0 15px 40px rgba(0, 0, 128, 0.5);
+        }
+
+        .why-card h3 {
+            font-weight: 600;
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .why-card p {
+            font-weight: 300;
+            font-size: 16px;
+            color: #b0b0b0;
+            line-height: 1.8;
+        }
+
+        .newsletter {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #151515, #0a0a0a);
+            text-align: center;
+            animation: fadeInDown 1.5s ease-out 2s backwards;
+            position: relative;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .newsletter h2 {
+            font-weight: 700;
+            font-size: 40px;
+            margin-bottom: 40px;
+            color: #ffffff;
+            text-shadow: 0 3px 12px rgba(0, 0, 128, 0.4);
+        }
+
+        .newsletter p {
+            font-weight: 300;
+            font-size: 18px;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(7, 0, 0, 0.05);
+            border-radius: 50px;
+            padding: 5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 128, 0.2);
+        }
+
+        .newsletter-input {
+            padding: 15px 25px;
+            width: 70%;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            background: transparent;
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-input:focus {
+            border: 2px solid #30b34a;
+        }
+
+        .newsletter-button {
+            padding: 15px 35px;
+            background: linear-gradient(45deg, #1e1ecc, #30b34a);
+            color: #ffffff;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(30, 179, 74, 0.5);
+        }
+
+        .newsletter-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(30, 179, 74, 0.7);
+        }
+
+        footer {
+            padding: 60px 0 40px;
+            background: linear-gradient(180deg, #000000, #000000);
+            text-align: center;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1.5s ease-out 2.5s backwards;
+            position: relative;
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        footer a {
+            color: #b0b0b0;
+            text-decoration: none;
+            margin: 15px;
+            font-size: 16px;
+            transition: color 0.3s, transform 0.3s;
+            position: relative;
+        }
+
+        footer a:hover {
+            color: #30b34a;
+            transform: scale(1.1);
+        }
+
+        footer a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: #30b34a;
+            transition: width 0.3s, left 0.3s;
+        }
+
+        footer a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        footer p {
+            font-weight: 300;
+            font-size: 14px;
+            color: #808080;
+            margin-top: 20px;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(0, 0, 128, 0.3);
+            border-radius: 50%;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        .why-choose::before,
+        .newsletter::before,
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ccircle cx="%25" cy="%25" r="1" fill="rgba(255,255,255,0.1)" /%3E%3C/svg%3E') repeat;
+            pointer-events: none;
+            opacity: 0.3;
+            animation: sparkle 5s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+            100% { transform: translateY(0) scale(1); opacity: 0.5; }
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 0; width: 100vw; }
+            .logo { font-size: 24px; }
+            nav .login-signup { display: none; }
+            nav { max-width: 100%; }
+            .hero, .why-choose { padding: 20px 0; width: 100vw; }
+            .features, .why-choose, .newsletter, footer { padding: 20px; max-width: 100%; }
+            .features { flex-direction: column; align-items: center; margin-top: -50px; gap: 40px; }
+            .feature-card, .why-card { padding: 30px; max-width: 100%; }
+            .cta-button { max-width: 300px; }
+            .why-card { max-width: 100%; }
+            .newsletter-form { max-width: 100%; flex-direction: column; border-radius: 25px; }
+            .newsletter-input { width: 100%; border-radius: 25px 25px 0 0; margin-bottom: 5px; }
+            .newsletter-button { width: 100%; border-radius: 0 0 25px 25px; }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            header { padding: 20px 0; width: 100vw; }
+            .hero, .why-choose { padding: 0; width: 100vw; }
+            .features, .why-choose, .newsletter, footer { max-width: 900px; padding: 30px; }
+            .features { margin-top: -50px; gap: 50px; justify-content: center; }
+        }
+
+        @media (min-width: 1025px) {
+            header { width: 100vw; }
+            .hero, .why-choose { width: 100vw; }
+            .features, .why-choose, .newsletter, footer { max-width: 1440px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <div class="logo">AdAIstra</div>
+                <a href="/login.html" class="login-signup">Login/Sign Up</a>
+            </nav>
+        </header>
+
+        <div class="particles">
+            <script>
+                for (let i = 0; i < 50; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.top = Math.random() * 100 + 'vh';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    document.querySelector('.particles').appendChild(particle);
+                }
+            </script>
+        </div>
+
+        <section class="hero" id="home">
+            <h1>Build A Brand Effortlessly With AI</h1>
+            <p>In a world where AI does anything... Brand is EVERYTHING</p>
+            <button class="cta-button cta-vision" onclick="window.location.href='https://adaistra.carrd.co'">Discover Our Vision</button>
+            <button class="cta-button cta-generator" onclick="showPopup()">Try Our Generator Now (100% free)</button>
+        </section>
+
+        <section class="features" id="features">
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Viral Tweet & Thread Generation</h3>
+                <p>Create highly engaging, X-optimized content instantly with AI-powered tools.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Customizable Tones</h3>
+                <p>Choose from impactful, witty, soft, violent, or neutral tones to match your voice.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Free & Unlimited</h3>
+                <p>Enjoy unlimited free access to spark your ideas and dominate X with no subscription needed.</p>
+            </div>
+        </section>
+
+        <section class="why-choose">
+            <h2>Why Choose AdAIstra?</h2>
+            <div class="why-card">
+                <h3>AI-Powered Precision</h3>
+                <p>Leverage cutting-edge AI to craft tweets that go viral on X with pinpoint accuracy.</p>
+            </div>
+            <div class="why-card">
+                <h3>User-Friendly Interface</h3>
+                <p>A sleek, intuitive design that empowers creators of all levels to dominate X effortlessly.</p>
+            </div>
+            <div class="why-card">
+                <h3>24/7 Support</h3>
+                <p>Instant help anytime with our dedicated support team, always ready on X.</p>
+            </div>
+        </section>
+
+        <section class="newsletter" id="contact">
+            <h2>Stay Ahead with AdAIstra</h2>
+            <p>Get the latest tips, updates, and exclusive X strategies delivered to your inbox.</p>
+            <div class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email" required>
+                <button class="newsletter-button">Subscribe Now</button>
+            </div>
+        </section>
+
+        <footer>
+            <a href="/terms.html">Terms of Service</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="https://x.com/AIdastra">Follow us on X</a>
+            <p>© 2025 AdAIstra. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <div id="premiumPopup" class="premium-popup" style="display: none;">
+        <div class="popup-content">
+            <p class="popup-message">Login or sign up to get started!</p>
+            <div class="button-group">
+                <button class="premium-button" onclick="goToLogin()">Login</button>
+                <button class="premium-button" onclick="goToSignup()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let authToken = localStorage.getItem('authToken') || null;
+
+        function isLoggedIn() {
+            return !!authToken;
+        }
+
+        function setAuthToken(token) {
+            authToken = token;
+            localStorage.setItem('authToken', token);
+        }
+
+        function checkAuth(event) {
+            event.preventDefault();
+            console.log('checkAuth triggered');
+            if (!isLoggedIn()) {
+                console.log('User not logged in, showing popup');
+                const popup = document.getElementById('premiumPopup');
+                popup.style.display = 'block';
+                popup.offsetHeight;
+                popup.classList.add('show');
+            } else {
+                console.log('User logged in, redirecting to tweet_generator.html');
+                window.location.href = '/tweet_generator.html';
+            }
+        }
+
+        function goToLogin() {
+            window.location.href = '/login.html?redirect=/tweet_generator.html';
+            hidePopup();
+        }
+
+        function goToSignup() {
+            window.location.href = '/signup.html?redirect=/tweet_generator.html';
+            hidePopup();
+        }
+
+        function hidePopup() {
+            const popup = document.getElementById('premiumPopup');
+            popup.classList.remove('show');
+            setTimeout(() => popup.style.display = 'none', 500);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const generateButton = document.querySelector('.cta-generator');
+            if (generateButton) {
+                generateButton.addEventListener('click', checkAuth);
+            } else {
+                console.error('Generate button not found in DOM');
+            }
+
+            const elements = document.querySelectorAll('.hero, .features, .why-choose, .newsletter, footer');
+            elements.forEach((el, index) => {
+                setTimeout(() => el.classList.add('animate'), index * 200);
+            });
+
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                document.querySelector('.particles').appendChild(particle);
+            }
+        });
+
+        document.querySelector('.newsletter-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = document.querySelector('.newsletter-input').value;
+            if (email) {
+                alert(`Thank you for subscribing with ${email}! We'll keep you updated on X strategies.`);
+                document.querySelector('.newsletter-input').value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+    </script>
+</body>
+</html>
