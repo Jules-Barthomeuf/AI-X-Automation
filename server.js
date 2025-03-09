@@ -11,10 +11,11 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const port = process.env.PORT || 3000; // Use Render's port or fallback to 3000
 
-app.get('/', (req, res) => res.send('Hello from AI-X-Automation!'));
-app.listen(port, () => console.log(`Server running on port ${port}`));
+// Make our server
+const app = express();
+app.set('trust proxy', 1);
+app.use(express.json());
 
 // Middleware to verify token
 const authenticateToken = (req, res, next) => {
@@ -51,11 +52,6 @@ const userSchema = new mongoose.Schema({
     marketingOpt: { type: Boolean, default: false }
 });
 const User = mongoose.model('User', userSchema);
-
-// Make our server
-const app = express();
-app.set('trust proxy', 1);
-app.use(express.json());
 
 // Serve static files
 const projectDir = path.join(__dirname);
@@ -333,11 +329,11 @@ app.post('/signup', async (req, res) => {
 });
 
 // Start server
-const PORT = 3003;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, '0.0.0.0', (err) => {
     if (err) {
         console.error(`❌ Failed to start server on port ${PORT}:`, err);
     } else {
-        console.log(`✅ Server is on at http://localhost:${PORT} and http://127.0.0.1:${PORT} (Codespaces accessible via https://scaling-memory-r4prqg6v7qw934wj-3003.app.github.dev)`);
+        console.log(`✅ Server is on at http://0.0.0.0:${PORT} (Render may use a different port)`);
     }
 });
