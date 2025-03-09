@@ -11,7 +11,6 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const express = require('express');
 const port = process.env.PORT || 3000; // Use Render's port or fallback to 3000
 
 app.get('/', (req, res) => res.send('Hello from AI-X-Automation!'));
