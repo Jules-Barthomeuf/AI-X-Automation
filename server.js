@@ -54,12 +54,9 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);
 
 // Serve static files
-const projectDir = path.join(__dirname);
-app.use(express.static(projectDir, {
-    extensions: ['html']
-}));
+const projectDir = path.join(__dirname, 'public');
+app.use(express.static(projectDir));
 
-// Serve specific HTML files
 app.get("/", (req, res) => {
     try {
         res.sendFile(path.join(projectDir, "index.html"));
