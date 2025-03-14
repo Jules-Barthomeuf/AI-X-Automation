@@ -11,78 +11,73 @@
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(90deg, #30b34a, #1e1ecc);
+            background: linear-gradient(250deg, #1e1ecc, #30b34a);
             color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         .container {
-            max-width: 350px;
-            padding: 30px;
-            background: #1c2526;
-            border-radius: 15px;
+            max-width: 1440px;
+            width: 700px;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .signup-form {
+            max-width: 300px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        h1 {
+        .signup-form h1 {
             font-weight: 700;
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 32px;
             color: #ffffff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+            margin-bottom: 30px;
         }
 
         .input-group {
-            margin-bottom: 15px;
-            text-align: left;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         label {
-            font-weight: 500;
-            font-size: 12px;
+            font-weight: 600;
+            font-size: 18px;
             color: #ffffff;
-            display: block;
-            margin-bottom: 5px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
 
-        input[type="email"], input[type="password"] {
+        input[type="text"], input[type="email"], input[type="password"] {
             width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
+            padding: 16px;
+            border: 1px solid #505050;
+            border-radius: 15px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 14px;
-            background-color: #2c3536;
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, 0.05);
             color: #ffffff;
-            box-sizing: border-box;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
-        input[type="email"]::placeholder, input[type="password"]::placeholder {
-            color: #888;
-        }
-
-        input[type="email"]:focus, input[type="password"]:focus {
+        input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+            border-color: #30b34a;
+            box-shadow: 0 0 12px rgba(48, 179, 74, 0.5);
             outline: none;
-        }
-
-        .password-group {
-            position: relative;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 65%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #30b34a;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 500;
         }
 
         .toggle-container {
@@ -117,7 +112,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: #505050;
+            background: #000000;
             transition: 0.4s;
             border-radius: 20px;
         }
@@ -143,163 +138,218 @@
         }
 
         button {
-            padding: 12px;
-            background: linear-gradient(90deg, #30b34a, #1e1ecc);
+            padding: 16px 32px;
+            background: linear-gradient(250deg, #1e1ecc, #30b34a);
             color: #ffffff;
             border: none;
-            border-radius: 25px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 16px;
-            width: 100%;
-            transition: transform 0.3s;
+            font-size: 18px;
+            margin-right: 15px;
+            margin-top: 11px;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         button:hover {
             transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(48, 179, 74, 0.7);
         }
 
         .login-link {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #ffffff;
+            margin-top: 20px;
+            color: #b0b0b0;
             text-decoration: none;
-            display: block;
+            font-size: 16px;
+            transition: color 0.3s;
         }
 
         .login-link:hover {
             color: #30b34a;
         }
 
-        .footer-links {
-            margin-top: 10px;
-            font-size: 12px;
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #808080;
         }
 
-        .footer-links a {
-            color: #ffffff;
+        footer a {
+            color: #b0b0b0;
             text-decoration: none;
-            margin: 0 5px;
+            margin: 0 10px;
+            transition: color 0.3s;
         }
 
-        .footer-links a:hover {
+        footer a:hover {
             color: #30b34a;
         }
 
-        #message {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #ff4444;
-            display: none;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
             .container {
-                margin: 20px;
+                width: 90%;
                 padding: 20px;
-                border-radius: 10px;
             }
-            h1 {
-                font-size: 20px;
+            .signup-form h1 {
+                font-size: 24px;
             }
-            input[type="email"], input[type="password"] {
-                font-size: 12px;
-                padding: 8px;
+            input[type="text"], input[type="email"], input[type="password"] {
+                font-size: 14px;
+                padding: 12px;
             }
             button {
-                font-size: 14px;
-                padding: 10px;
+                font-size: 16px;
+                padding: 12px 24px;
             }
+            .login-link {
+                font-size: 14px;
+            }
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 36px;
+            height: 27px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+
+        .nav-button span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #ffffff;
+            margin-bottom: 6px;
+            transition: transform 0.3s;
+        }
+
+        .nav-button.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .nav-button.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-button.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        .nav-menu a:hover {
+            color: #30b34a;
         }
     </style>
 </head>
 <body>
+    <!-- Hamburger Menu -->
+    <button class="nav-button" onclick="toggleNavMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="nav-menu" id="navMenu" style="display: none; position: absolute; top: 40px; left: 10px; background: rgba(0, 0, 0, 0.95); border-radius: 10px; padding: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);">
+        <a href="/index.html" style="display: block; color: #ffffff; text-decoration: none; padding: 10px; font-size: 16px; transition: color 0.3s;">Home</a>
+        <a href="/login.html" style="display: block; color: #ffffff; text-decoration: none; padding: 10px; font-size: 16px; transition: color 0.3s;">Login</a>
+    </div>
+
     <div class="container">
-        <h1>AdAIstra</h1>
-        <form id="signupForm" onsubmit="handleSignup(event)">
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" required>
-            </div>
-            <div class="input-group password-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                <button type="button" class="toggle-password" onclick="togglePassword('password')">Show</button>
-            </div>
-            <div class="input-group password-group">
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
-                <button type="button" class="toggle-password" onclick="togglePassword('confirm-password')">Show</button>
-            </div>
-            <div class="toggle-container">
-                <span class="toggle-label">Stay Updated with Exclusive Tips</span>
-                <label class="toggle-switch">
-                    <input type="checkbox" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <button type="submit">Sign Up</button>
-            <div id="message"></div>
-        </form>
-        <a href="/login.html" class="login-link">Already have an account? Log in</a>
-        <div class="footer-links">
-            <a href="/terms">Terms of Service</a> | <a href="/privacy">Privacy Policy</a>
+        <div class="signup-form">
+            <h1>AdAIstra</h1>
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <div class="input-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                </div>
+                <div class="toggle-container">
+                    <span class="toggle-label">Stay Updated with Exclusive Tips</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="marketingOpt" name="marketingOpt" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+            <a href="/login.html" class="login-link">Already have an account? Log in</a>
+            <footer>
+                <a href="/terms.html">Terms of Service</a> | <a href="/privacy.html">Privacy Policy</a>
+            </footer>
         </div>
     </div>
 
     <script>
-        function togglePassword(fieldId) {
-            const input = document.getElementById(fieldId);
-            const button = input.nextElementSibling;
-            if (input.type === 'password') {
-                input.type = 'text';
-                button.textContent = 'Hide';
-            } else {
-                input.type = 'password';
-                button.textContent = 'Show';
-            }
-        }
-
         async function handleSignup(event) {
             event.preventDefault();
+            const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
-            const message = document.getElementById('message');
+            const marketingOpt = document.getElementById('marketingOpt').checked;
 
             if (password !== confirmPassword) {
-                message.style.display = 'block';
-                message.textContent = 'Passwords do not match.';
+                alert('Passwords do not match.');
                 return;
             }
 
             try {
                 const response = await fetch('/signup', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password }),
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password, marketingOpt }),
                 });
-
                 const data = await response.json();
                 if (response.ok) {
-                    message.style.display = 'block';
-                    message.style.color = '#30b34a';
-                    message.textContent = 'Signup successful! Redirecting to login...';
+                    alert('Signup successful! Redirecting to login...');
                     setTimeout(() => {
                         window.location.href = '/login.html';
                     }, 2000);
                 } else {
-                    message.style.display = 'block';
-                    message.textContent = data.error || 'Signup failed. Try again.';
+                    alert(data.error || 'Signup failed.');
                 }
             } catch (error) {
-                message.style.display = 'block';
-                message.textContent = 'An error occurred. Please try again.';
                 console.error('Signup error:', error);
+                alert('Error signing up: ' + error.message);
             }
         }
+
+        function toggleNavMenu() {
+            const navButton = document.querySelector('.nav-button');
+            const navMenu = document.getElementById('navMenu');
+            navButton.classList.toggle('active');
+            navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.addEventListener('click', function(event) {
+            const navButton = document.querySelector('.nav-button');
+            const navMenu = document.getElementById('navMenu');
+            if (!navButton.contains(event.target) && !navMenu.contains(event.target)) {
+                navButton.classList.remove('active');
+                navMenu.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
