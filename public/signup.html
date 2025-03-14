@@ -11,28 +11,26 @@
             font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(250deg, #1e1ecc, #30b34a);
+            background: linear-gradient(90deg, #30b34a, #1e1ecc);
             color: #ffffff;
-            line-height: 1.6;
-            overflow-x: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 400px;
+            max-width: 350px;
             padding: 30px;
             background: #1c2526;
             border-radius: 15px;
             text-align: center;
-            animation: fadeInUp 1.5s ease-out;
         }
 
         h1 {
             font-weight: 700;
-            font-size: 28px;
+            font-size: 24px;
             margin-bottom: 20px;
             color: #ffffff;
         }
@@ -44,7 +42,7 @@
 
         label {
             font-weight: 500;
-            font-size: 14px;
+            font-size: 12px;
             color: #ffffff;
             display: block;
             margin-bottom: 5px;
@@ -53,7 +51,7 @@
         input[type="email"], input[type="password"] {
             width: 100%;
             padding: 10px;
-            border: 1px solid #505050;
+            border: none;
             border-radius: 5px;
             font-family: 'Montserrat', sans-serif;
             font-size: 14px;
@@ -62,8 +60,11 @@
             box-sizing: border-box;
         }
 
+        input[type="email"]::placeholder, input[type="password"]::placeholder {
+            color: #888;
+        }
+
         input[type="email"]:focus, input[type="password"]:focus {
-            border-color: #30b34a;
             outline: none;
         }
 
@@ -74,13 +75,14 @@
         .toggle-password {
             position: absolute;
             right: 10px;
-            top: 50%;
+            top: 65%;
             transform: translateY(-50%);
             background: none;
             border: none;
             color: #30b34a;
             cursor: pointer;
             font-size: 12px;
+            font-weight: 500;
         }
 
         .toggle-container {
@@ -115,7 +117,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(250deg, #1e1ecc, #30b34a);
+            background: #505050;
             transition: 0.4s;
             border-radius: 20px;
         }
@@ -133,7 +135,7 @@
         }
 
         input:checked + .slider {
-            background: linear-gradient(250deg, #1e1ecc, #30b34a);
+            background: linear-gradient(90deg, #30b34a, #1e1ecc);
         }
 
         input:checked + .slider:before {
@@ -142,7 +144,7 @@
 
         button {
             padding: 12px;
-            background: linear-gradient(250deg, #1e1ecc, #30b34a);
+            background: linear-gradient(90deg, #30b34a, #1e1ecc);
             color: #ffffff;
             border: none;
             border-radius: 25px;
@@ -162,6 +164,7 @@
             font-size: 14px;
             color: #ffffff;
             text-decoration: none;
+            display: block;
         }
 
         .login-link:hover {
@@ -190,11 +193,6 @@
             display: none;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         @media (max-width: 768px) {
             .container {
                 margin: 20px;
@@ -202,7 +200,7 @@
                 border-radius: 10px;
             }
             h1 {
-                font-size: 24px;
+                font-size: 20px;
             }
             input[type="email"], input[type="password"] {
                 font-size: 12px;
@@ -217,7 +215,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Sign Up for AIdastra</h1>
+        <h1>AIdastra</h1>
         <form id="signupForm" onsubmit="handleSignup(event)">
             <div class="input-group">
                 <label for="email">Email</label>
