@@ -7,11 +7,15 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,500;0,700;1,400&display=swap');
 
-        body {
-            font-family: 'Montserrat', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(180deg, #0a0a0a, #151515);
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #000000; /* Solid black background */
             color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
@@ -20,7 +24,7 @@
         .container {
             max-width: 1440px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 20px;
             width: 100%;
             background: transparent;
             border-radius: 0;
@@ -29,21 +33,19 @@
         }
 
         header {
-            padding: 20px 0;
-            background: #0a0a0a;
+            padding: 10px 0;
+            background: #000000;
             position: fixed;
-            width: 100vw;
+            width: 100%;
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
-            left: 50%;
-            transform: translateX(-50%);
             box-sizing: border-box;
         }
 
         .logo {
             font-weight: 700;
-            font-size: 32px;
+            font-size: 24px;
             color: #ffffff;
             text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
             transition: transform 0.3s;
@@ -59,14 +61,14 @@
             align-items: center;
             max-width: 1440px;
             margin: 0 auto;
+            padding: 0 20px;
         }
 
         .login-signup {
             text-decoration: none;
             color: #ffffff;
-            margin-right: 60px;
             font-weight: 500;
-            font-size: 16px;
+            font-size: 14px;
             transition: color 0.3s, transform 0.3s;
         }
 
@@ -77,27 +79,15 @@
 
         .hero {
             text-align: center;
-            padding: 20px 0 0;
-            background: linear-gradient(230deg, #000001, #000301);
-            background-size: 200% 200%;
-            animation: gradientShift 15s ease infinite;
-            min-height: 100vh;
+            padding: 60px 20px; /* Reduced padding for mobile */
+            background: #000000;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
             animation: slideUp 1s ease-out;
-            width: 100vw;
-            margin: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            width: 100%;
         }
 
         @keyframes slideUp {
@@ -107,8 +97,8 @@
 
         .hero h1 {
             font-weight: 700;
-            font-size: 72px;
-            margin-bottom: 20px;
+            font-size: 40px; /* Further reduced default size */
+            margin-bottom: 15px;
             color: #ffffff;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
             animation: fadeIn 1.5s ease-in;
@@ -121,9 +111,9 @@
 
         .hero p {
             font-weight: 300;
-            font-size: 24px;
+            font-size: 16px;
             color: #ffffff;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             animation: slideUp 1.5s ease-out 0.5s backwards;
         }
 
@@ -148,17 +138,17 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: rgba(0, 0, 0, 0.85);
-            padding: 40px;
-            border-radius: 25px;
+            padding: 30px;
+            border-radius: 20px;
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 20px 40px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 1, 0, 0.3);
             z-index: 1000;
             text-align: center;
             font-family: 'Montserrat', sans-serif;
             color: #ffffff;
-            max-width: 450px;
+            max-width: 400px;
             width: 90%;
-            min-height: 250px;
+            min-height: 200px;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
@@ -173,31 +163,28 @@
         }
 
         .popup-message {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 70px;
-            text-shadow: 0px;
+            margin-bottom: 40px;
             line-height: 1.4;
         }
 
         .button-group {
-            margin-top: 25px;
             display: flex;
             justify-content: space-between;
-            gap: 20px;
+            gap: 10px;
         }
 
         .premium-button {
-            padding: 18px 35px;
+            padding: 12px 25px;
             background: linear-gradient(250deg, #1e1ecc, #30b34a);
             color: #ffffff;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 20px;
-            flex: 20;
-            box-shadow: rgba(30, 179, 74, 0.4);
+            font-size: 16px;
+            flex: 1;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -206,71 +193,61 @@
             box-shadow: 0 8px 20px rgba(30, 179, 74, 0.6);
         }
 
-        .action-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(48, 179, 74, 0.7);
-        }
-
         .cta-button {
-            padding: 12px 40px;
+            padding: 10px 30px;
             color: #ffffff;
             font-weight: 600;
-            font-size: 22px;
+            font-size: 18px;
             text-decoration: none;
-            display: inline-block;
+            display: block;
             width: 100%;
-            max-width: 500px;
-            margin: 10px 0;
-            margin-top: 100px;
+            max-width: 350px;
+            margin: 10px auto;
             transition: transform 0.6s, box-shadow 0.6s;
-            border-radius: 150px
+            border-radius: 150px;
+            box-sizing: border-box;
         }
 
         .cta-vision {
             background: linear-gradient(250deg, #1e1ecc, #30b34a);
-            color: #ffffff;
             box-shadow: 0 0 25px rgba(40, 214, 48, 0.8);
             animation: pulse 1.5s infinite ease-in-out;
-            border: none; /* Removed border */
+            border: none;
         }
 
         .cta-vision:hover {
-            background: linear-gradient(250deg, #1e1ecc, #30b34a); /* Match gradient on hover */
-            transform: scale(1.1);
+            transform: scale(1.05);
             box-shadow: 0 0 25px rgb(42, 180, 72);
         }
 
         .cta-generator {
             background: linear-gradient(250deg, #1e1ecc, #30b34a);
-            box-shadow: 25px linear-gradient(250deg, #1e1ecc, #30b34a);
             animation: pulse 1.5s infinite ease-in-out;
-            border: 0px solid rgb(234, 229, 229); /* Border matches background */
+            border: none;
         }
 
         .cta-generator:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
             box-shadow: 0 0 25px rgb(2, 109, 0);
         }
 
         @keyframes pulse {
-            0% { box-shadow: 0 0 15px linear-gradient(250deg, #1e1ecc, #30b34a); }
-            50% { box-shadow: 0 0 25px linear-gradient(250deg, #1e1ecc, #30b34a); }
-            100% { box-shadow: 0 0 15px linear-gradient(250deg, #1e1ecc, #30b34a); }
+            0% { box-shadow: 0 0 15px rgba(30, 179, 74, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(30, 179, 74, 0.7); }
+            100% { box-shadow: 0 0 15px rgba(30, 179, 74, 0.5); }
         }
 
         .features {
-            padding: 50px 40px;
+            padding: 30px 20px;
             background: transparent;
             display: flex;
             justify-content: center;
-            gap: 80px;
+            gap: 30px;
             animation: fadeInUp 1.5s ease-out;
-            margin-top: -150px;
             position: relative;
             z-index: 10;
             max-width: 1440px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
 
         @keyframes fadeInUp {
@@ -280,16 +257,15 @@
 
         .feature-card {
             background: linear-gradient(180deg, #1e1ecc, #30b34a);
-            padding: 50px;
-            border-radius: 25px;
+            padding: 30px;
+            border-radius: 20px;
             border: 1px solid #2a2a2a;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             animation: zoomIn 1.5s ease-out backwards;
-            overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            position: relative;
-            max-width: 300px;
+            max-width: 280px;
+            width: 100%;
         }
 
         @keyframes zoomIn {
@@ -304,42 +280,40 @@
 
         .feature-card h3 {
             font-weight: 600;
-            font-size: 32px;
-            margin-bottom: 20px;
+            font-size: 20px;
+            margin-bottom: 10px;
             color: #ffffff;
         }
 
         .feature-card p {
             font-weight: 300;
-            font-size: 18px;
+            font-size: 14px;
             color: #b0b0b0;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .feature-icon {
-            font-size: 60px;
+            font-size: 40px;
             color: #6A1B9A;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .why-choose {
-            padding: 50px 60px;
+            padding: 30px 20px;
             background: #000000;
             text-align: center;
             animation: fadeInUp 1.5s ease-out 1.5s backwards;
             position: relative;
-            overflow: hidden;
-            width: 300%;
-            margin: 0;
-            left: 50%;
-            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1440px;
+            margin: 0 auto;
             box-sizing: border-box;
         }
 
         .why-choose h2 {
             font-weight: 700;
-            font-size: 48px;
-            margin-bottom: 60px;
+            font-size: 32px;
+            margin-bottom: 30px;
             color: #ffffff;
             text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             animation: pulseText 2s infinite ease-in-out;
@@ -353,16 +327,15 @@
 
         .why-card {
             background: linear-gradient(180deg, #1e1ecc, #30b34a);
-            backdrop-filter: blur(10px);
-            padding: 40px;
+            padding: 25px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            margin: 20px auto;
+            margin: 15px auto;
             transition: transform 0.3s, box-shadow 0.3s;
-            display: inline-block;
-            max-width: 350px;
             animation: slideIn 1.5s ease-out backwards;
             box-shadow: 0 10px 30px rgba(0, 0, 128, 0.3);
+            max-width: 320px;
+            width: 100%;
         }
 
         @keyframes slideIn {
@@ -376,22 +349,22 @@
 
         .why-card h3 {
             font-weight: 600;
-            font-size: 28px;
-            margin-bottom: 20px;
+            font-size: 20px;
+            margin-bottom: 10px;
             color: #ffffff;
             text-transform: uppercase;
         }
 
         .why-card p {
             font-weight: 300;
-            font-size: 16px;
+            font-size: 14px;
             color: #b0b0b0;
             line-height: 1.8;
         }
 
         .newsletter {
-            padding: 100px 0;
-            background: linear-gradient(180deg, #151515, #0a0a0a);
+            padding: 40px 20px;
+            background: #000000;
             text-align: center;
             animation: fadeInDown 1.5s ease-out 2s backwards;
             position: relative;
@@ -408,21 +381,21 @@
 
         .newsletter h2 {
             font-weight: 700;
-            font-size: 40px;
-            margin-bottom: 40px;
+            font-size: 28px;
+            margin-bottom: 25px;
             color: #ffffff;
             text-shadow: 0 3px 12px rgba(0, 0, 128, 0.4);
         }
 
         .newsletter p {
             font-weight: 300;
-            font-size: 18px;
+            font-size: 14px;
             color: #b0b0b0;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .newsletter-form {
-            max-width: 600px;
+            max-width: 450px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
@@ -434,13 +407,13 @@
         }
 
         .newsletter-input {
-            padding: 15px 25px;
+            padding: 10px 15px;
             width: 70%;
             border: none;
             border-radius: 50px 0 0 50px;
             background: transparent;
             color: #ffffff;
-            font-size: 16px;
+            font-size: 14px;
             outline: none;
             transition: border-color 0.3s;
         }
@@ -450,26 +423,26 @@
         }
 
         .newsletter-button {
-            padding: 15px 35px;
+            padding: 10px 25px;
             background: linear-gradient(45deg, #1e1ecc, #30b34a);
             color: #ffffff;
             border: none;
             border-radius: 0 50px 50px 0;
             cursor: pointer;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 14px;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 5px 20px rgba(30, 179, 74, 0.5);
         }
 
         .newsletter-button:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(30, 179, 74, 0.7);
         }
 
         footer {
-            padding: 60px 0 40px;
-            background: linear-gradient(180deg, #000000, #000000);
+            padding: 30px 20px;
+            background: #000000;
             text-align: center;
             border-top: 2px solid rgba(255, 255, 255, 0.1);
             animation: fadeIn 1.5s ease-out 2.5s backwards;
@@ -483,8 +456,8 @@
         footer a {
             color: #b0b0b0;
             text-decoration: none;
-            margin: 15px;
-            font-size: 16px;
+            margin: 8px;
+            font-size: 14px;
             transition: color 0.3s, transform 0.3s;
             position: relative;
         }
@@ -512,9 +485,9 @@
 
         footer p {
             font-weight: 300;
-            font-size: 14px;
+            font-size: 12px;
             color: #808080;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .particles {
@@ -563,33 +536,189 @@
             100% { transform: scale(1); }
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
-            header { padding: 15px 0; width: 100vw; }
-            .logo { font-size: 24px; }
-            nav .login-signup { display: none; }
-            nav { max-width: 100%; }
-            .hero, .why-choose { padding: 20px 0; width: 100vw; }
-            .features, .why-choose, .newsletter, footer { padding: 20px; max-width: 100%; }
-            .features { flex-direction: column; align-items: center; margin-top: -50px; gap: 40px; }
-            .feature-card, .why-card { padding: 30px; max-width: 100%; }
-            .cta-button { max-width: 300px; }
-            .why-card { max-width: 100%; }
-            .newsletter-form { max-width: 100%; flex-direction: column; border-radius: 25px; }
-            .newsletter-input { width: 100%; border-radius: 25px 25px 0 0; margin-bottom: 5px; }
-            .newsletter-button { width: 100%; border-radius: 0 0 25px 25px; }
+            header {
+                padding: 8px 0;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .login-signup {
+                display: none;
+            }
+
+            .hero {
+                padding: 50px 15px; /* Further reduced padding */
+                min-height: auto; /* Allow content to fit */
+            }
+
+            .hero h1 {
+                font-size: 28px; /* Smaller title */
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .cta-button {
+                max-width: 280px;
+                font-size: 16px;
+                padding: 8px 25px;
+                margin: 8px auto;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+                gap: 25px;
+                padding: 25px 15px;
+            }
+
+            .feature-card {
+                padding: 25px;
+                max-width: 100%;
+            }
+
+            .feature-card h3 {
+                font-size: 18px;
+            }
+
+            .feature-card p {
+                font-size: 13px;
+            }
+
+            .why-choose {
+                padding: 25px 15px;
+            }
+
+            .why-choose h2 {
+                font-size: 24px;
+            }
+
+            .why-card {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .why-card h3 {
+                font-size: 18px;
+            }
+
+            .why-card p {
+                font-size: 13px;
+            }
+
+            .newsletter {
+                padding: 30px 15px;
+            }
+
+            .newsletter h2 {
+                font-size: 22px;
+            }
+
+            .newsletter p {
+                font-size: 13px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                max-width: 100%;
+                border-radius: 25px;
+            }
+
+            .newsletter-input {
+                width: 100%;
+                border-radius: 25px 25px 0 0;
+                margin-bottom: 5px;
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .newsletter-button {
+                width: 100%;
+                border-radius: 0 0 25px 25px;
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 40px 10px;
+            }
+
+            .hero h1 {
+                font-size: 24px; /* Even smaller for very small screens */
+            }
+
+            .hero p {
+                font-size: 12px;
+            }
+
+            .cta-button {
+                max-width: 240px;
+                font-size: 14px;
+                padding: 6px 20px;
+                margin: 6px auto;
+            }
+
+            .feature-card h3 {
+                font-size: 16px;
+            }
+
+            .feature-card p {
+                font-size: 12px;
+            }
+
+            .why-choose h2 {
+                font-size: 20px;
+            }
+
+            .why-card h3 {
+                font-size: 16px;
+            }
+
+            .why-card p {
+                font-size: 12px;
+            }
+
+            .newsletter h2 {
+                font-size: 18px;
+            }
+
+            .newsletter p {
+                font-size: 12px;
+            }
         }
 
         @media (min-width: 769px) and (max-width: 1024px) {
-            header { padding: 20px 0; width: 100vw; }
-            .hero, .why-choose { padding: 0; width: 100vw; }
-            .features, .why-choose, .newsletter, footer { max-width: 900px; padding: 30px; }
-            .features { margin-top: -50px; gap: 50px; justify-content: center; }
+            header {
+                padding: 12px 0;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .features {
+                gap: 25px;
+                padding: 30px 20px;
+                justify-content: center;
+            }
+
+            .why-choose, .newsletter, footer {
+                padding: 30px 20px;
+                max-width: 900px;
+            }
         }
 
         @media (min-width: 1025px) {
-            header { width: 100vw; }
-            .hero, .why-choose { width: 100vw; }
-            .features, .why-choose, .newsletter, footer { max-width: 1440px; }
+            .login-signup {
+                margin-right: 40px;
+            }
         }
     </style>
 </head>
