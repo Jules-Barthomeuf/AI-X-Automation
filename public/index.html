@@ -19,6 +19,7 @@
             color: #ffffff;
             line-height: 1.6;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         .container {
@@ -33,7 +34,7 @@
         }
 
         header {
-            padding: 10px 0;
+            padding: 15px 0;
             background: #000000;
             position: fixed;
             width: 100%;
@@ -45,7 +46,7 @@
 
         .logo {
             font-weight: 700;
-            font-size: 24px;
+            font-size: 28px;
             color: #ffffff;
             text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
             transition: transform 0.3s;
@@ -68,7 +69,7 @@
             text-decoration: none;
             color: #ffffff;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 16px;
             transition: color 0.3s, transform 0.3s;
         }
 
@@ -79,8 +80,9 @@
 
         .hero {
             text-align: center;
-            padding: 60px 20px; /* Reduced padding for mobile */
-            background: #000000;
+            padding: 80px 0 20px;
+            background: #000000; /* Solid black background */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -97,8 +99,8 @@
 
         .hero h1 {
             font-weight: 700;
-            font-size: 40px; /* Further reduced default size */
-            margin-bottom: 15px;
+            font-size: 48px; /* Reduced default size */
+            margin-bottom: 20px;
             color: #ffffff;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
             animation: fadeIn 1.5s ease-in;
@@ -111,9 +113,9 @@
 
         .hero p {
             font-weight: 300;
-            font-size: 16px;
+            font-size: 18px;
             color: #ffffff;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             animation: slideUp 1.5s ease-out 0.5s backwards;
         }
 
@@ -138,17 +140,17 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: rgba(0, 0, 0, 0.85);
-            padding: 30px;
-            border-radius: 20px;
+            padding: 40px;
+            border-radius: 25px;
             border: 2px solid rgba(255, 255, 255, 0.1);
             box-shadow: 20px 40px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 1, 0, 0.3);
             z-index: 1000;
             text-align: center;
             font-family: 'Montserrat', sans-serif;
             color: #ffffff;
-            max-width: 400px;
+            max-width: 450px;
             width: 90%;
-            min-height: 200px;
+            min-height: 250px;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
@@ -163,27 +165,27 @@
         }
 
         .popup-message {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 600;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             line-height: 1.4;
         }
 
         .button-group {
             display: flex;
             justify-content: space-between;
-            gap: 10px;
+            gap: 15px;
         }
 
         .premium-button {
-            padding: 12px 25px;
+            padding: 15px 30px;
             background: linear-gradient(250deg, #1e1ecc, #30b34a);
             color: #ffffff;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 18px;
             flex: 1;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -194,15 +196,15 @@
         }
 
         .cta-button {
-            padding: 10px 30px;
+            padding: 12px 40px;
             color: #ffffff;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 20px;
             text-decoration: none;
             display: block;
             width: 100%;
-            max-width: 350px;
-            margin: 10px auto;
+            max-width: 400px;
+            margin: 15px auto; /* Centered with spacing */
             transition: transform 0.6s, box-shadow 0.6s;
             border-radius: 150px;
             box-sizing: border-box;
@@ -238,11 +240,11 @@
         }
 
         .features {
-            padding: 30px 20px;
+            padding: 40px 20px;
             background: transparent;
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 40px;
             animation: fadeInUp 1.5s ease-out;
             position: relative;
             z-index: 10;
@@ -257,14 +259,14 @@
 
         .feature-card {
             background: linear-gradient(180deg, #1e1ecc, #30b34a);
-            padding: 30px;
-            border-radius: 20px;
+            padding: 40px;
+            border-radius: 25px;
             border: 1px solid #2a2a2a;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
             animation: zoomIn 1.5s ease-out backwards;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            max-width: 280px;
+            max-width: 300px;
             width: 100%;
         }
 
@@ -280,26 +282,26 @@
 
         .feature-card h3 {
             font-weight: 600;
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 24px;
+            margin-bottom: 15px;
             color: #ffffff;
         }
 
         .feature-card p {
             font-weight: 300;
-            font-size: 14px;
+            font-size: 16px;
             color: #b0b0b0;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .feature-icon {
-            font-size: 40px;
+            font-size: 50px;
             color: #6A1B9A;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .why-choose {
-            padding: 30px 20px;
+            padding: 40px 20px;
             background: #000000;
             text-align: center;
             animation: fadeInUp 1.5s ease-out 1.5s backwards;
@@ -312,8 +314,8 @@
 
         .why-choose h2 {
             font-weight: 700;
-            font-size: 32px;
-            margin-bottom: 30px;
+            font-size: 36px;
+            margin-bottom: 40px;
             color: #ffffff;
             text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             animation: pulseText 2s infinite ease-in-out;
@@ -327,14 +329,14 @@
 
         .why-card {
             background: linear-gradient(180deg, #1e1ecc, #30b34a);
-            padding: 25px;
+            padding: 30px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            margin: 15px auto;
+            margin: 20px auto;
             transition: transform 0.3s, box-shadow 0.3s;
             animation: slideIn 1.5s ease-out backwards;
             box-shadow: 0 10px 30px rgba(0, 0, 128, 0.3);
-            max-width: 320px;
+            max-width: 350px;
             width: 100%;
         }
 
@@ -349,21 +351,21 @@
 
         .why-card h3 {
             font-weight: 600;
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 24px;
+            margin-bottom: 15px;
             color: #ffffff;
             text-transform: uppercase;
         }
 
         .why-card p {
             font-weight: 300;
-            font-size: 14px;
+            font-size: 16px;
             color: #b0b0b0;
             line-height: 1.8;
         }
 
         .newsletter {
-            padding: 40px 20px;
+            padding: 60px 20px;
             background: #000000;
             text-align: center;
             animation: fadeInDown 1.5s ease-out 2s backwards;
@@ -381,21 +383,21 @@
 
         .newsletter h2 {
             font-weight: 700;
-            font-size: 28px;
-            margin-bottom: 25px;
+            font-size: 32px;
+            margin-bottom: 30px;
             color: #ffffff;
             text-shadow: 0 3px 12px rgba(0, 0, 128, 0.4);
         }
 
         .newsletter p {
             font-weight: 300;
-            font-size: 14px;
+            font-size: 16px;
             color: #b0b0b0;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .newsletter-form {
-            max-width: 450px;
+            max-width: 500px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
@@ -407,7 +409,7 @@
         }
 
         .newsletter-input {
-            padding: 10px 15px;
+            padding: 12px 20px;
             width: 70%;
             border: none;
             border-radius: 50px 0 0 50px;
@@ -423,7 +425,7 @@
         }
 
         .newsletter-button {
-            padding: 10px 25px;
+            padding: 12px 30px;
             background: linear-gradient(45deg, #1e1ecc, #30b34a);
             color: #ffffff;
             border: none;
@@ -441,7 +443,7 @@
         }
 
         footer {
-            padding: 30px 20px;
+            padding: 40px 20px;
             background: #000000;
             text-align: center;
             border-top: 2px solid rgba(255, 255, 255, 0.1);
@@ -456,7 +458,7 @@
         footer a {
             color: #b0b0b0;
             text-decoration: none;
-            margin: 8px;
+            margin: 10px;
             font-size: 14px;
             transition: color 0.3s, transform 0.3s;
             position: relative;
@@ -487,7 +489,7 @@
             font-weight: 300;
             font-size: 12px;
             color: #808080;
-            margin-top: 10px;
+            margin-top: 15px;
         }
 
         .particles {
@@ -539,11 +541,11 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             header {
-                padding: 8px 0;
+                padding: 10px 0;
             }
 
             .logo {
-                font-size: 20px;
+                font-size: 22px;
             }
 
             .login-signup {
@@ -551,76 +553,75 @@
             }
 
             .hero {
-                padding: 50px 15px; /* Further reduced padding */
-                min-height: auto; /* Allow content to fit */
+                padding: 60px 20px 20px;
             }
 
             .hero h1 {
-                font-size: 28px; /* Smaller title */
+                font-size: 32px; /* Smaller title on mobile */
             }
 
             .hero p {
-                font-size: 14px;
+                font-size: 16px;
             }
 
             .cta-button {
-                max-width: 280px;
-                font-size: 16px;
-                padding: 8px 25px;
-                margin: 8px auto;
+                max-width: 300px;
+                font-size: 18px;
+                padding: 10px 30px;
+                margin: 10px auto;
             }
 
             .features {
                 flex-direction: column;
                 align-items: center;
-                gap: 25px;
-                padding: 25px 15px;
+                gap: 30px;
+                padding: 30px 20px;
             }
 
             .feature-card {
-                padding: 25px;
+                padding: 30px;
                 max-width: 100%;
             }
 
             .feature-card h3 {
-                font-size: 18px;
+                font-size: 20px;
             }
 
             .feature-card p {
-                font-size: 13px;
+                font-size: 14px;
             }
 
             .why-choose {
-                padding: 25px 15px;
+                padding: 30px 20px;
             }
 
             .why-choose h2 {
-                font-size: 24px;
+                font-size: 28px;
             }
 
             .why-card {
                 max-width: 100%;
-                padding: 20px;
+                padding: 25px;
             }
 
             .why-card h3 {
-                font-size: 18px;
+                font-size: 20px;
             }
 
             .why-card p {
-                font-size: 13px;
+                font-size: 14px;
             }
 
             .newsletter {
-                padding: 30px 15px;
+                padding: 40px 20px;
             }
 
             .newsletter h2 {
-                font-size: 22px;
+                font-size: 24px;
             }
 
             .newsletter p {
-                font-size: 13px;
+                font-size: 14px;
             }
 
             .newsletter-form {
@@ -633,84 +634,79 @@
                 width: 100%;
                 border-radius: 25px 25px 0 0;
                 margin-bottom: 5px;
-                padding: 8px 12px;
-                font-size: 13px;
+                padding: 10px 15px;
+                font-size: 14px;
             }
 
             .newsletter-button {
                 width: 100%;
                 border-radius: 0 0 25px 25px;
-                padding: 8px 15px;
-                font-size: 13px;
+                padding: 10px 20px;
+                font-size: 14px;
             }
         }
 
         @media (max-width: 480px) {
-            .hero {
-                padding: 40px 10px;
-            }
-
             .hero h1 {
-                font-size: 24px; /* Even smaller for very small screens */
+                font-size: 28px; /* Even smaller for very small screens */
             }
 
             .hero p {
-                font-size: 12px;
+                font-size: 14px;
             }
 
             .cta-button {
-                max-width: 240px;
-                font-size: 14px;
-                padding: 6px 20px;
-                margin: 6px auto;
+                max-width: 250px;
+                font-size: 16px;
+                padding: 8px 25px;
             }
 
             .feature-card h3 {
-                font-size: 16px;
-            }
-
-            .feature-card p {
-                font-size: 12px;
-            }
-
-            .why-choose h2 {
-                font-size: 20px;
-            }
-
-            .why-card h3 {
-                font-size: 16px;
-            }
-
-            .why-card p {
-                font-size: 12px;
-            }
-
-            .newsletter h2 {
                 font-size: 18px;
             }
 
+            .feature-card p {
+                font-size: 13px;
+            }
+
+            .why-choose h2 {
+                font-size: 24px;
+            }
+
+            .why-card h3 {
+                font-size: 18px;
+            }
+
+            .why-card p {
+                font-size: 13px;
+            }
+
+            .newsletter h2 {
+                font-size: 20px;
+            }
+
             .newsletter p {
-                font-size: 12px;
+                font-size: 13px;
             }
         }
 
         @media (min-width: 769px) and (max-width: 1024px) {
             header {
-                padding: 12px 0;
+                padding: 15px 0;
             }
 
             .hero {
-                padding: 60px 20px;
+                padding: 80px 20px 20px;
             }
 
             .features {
-                gap: 25px;
-                padding: 30px 20px;
+                gap: 30px;
+                padding: 40px 20px;
                 justify-content: center;
             }
 
             .why-choose, .newsletter, footer {
-                padding: 30px 20px;
+                padding: 40px 20px;
                 max-width: 900px;
             }
         }
