@@ -119,7 +119,7 @@ app.use((req, res, next) => {
 
 // Generate tweets
 app.post("/generate-tweets", authenticateToken, async (req, res) => {
-    console.log("✅ Someone wants tweets!");
+    console.log("✅ Someone wants tweets! Raw headers:", req.headers);
 
     // Log the raw request body to debug parsing
     console.log("Raw request body:", JSON.stringify(req.body, null, 2));
@@ -162,14 +162,7 @@ app.post("/generate-tweets", authenticateToken, async (req, res) => {
         console.log("Mode is not 'thread' or invalid, using default length:", requestedLength, "Mode received:", JSON.stringify(mode));
     }
 
-    // Temporary bypass for testing (remove after confirmation)
-    console.log("Bypassing validation for testing, using requestedLength:", requestedLength);
-    // Uncomment the next line after testing to re-enable validation
-    // if (mode && typeof mode === 'string' && mode.trim().toLowerCase() === 'thread' && (isNaN(requestedLength) || requestedLength < 3 || requestedLength > 10)) {
-    //     return res.status(400).json({ error: "Thread length must be a number between 3 and 10 tweets." });
-    // }
-
-    // Tone instructions (keep as is, with no emojis enforced)
+    // Tone instructions
     let toneInstructions = "";
     if (tone) {
         switch (tone.toLowerCase()) {
@@ -229,7 +222,7 @@ app.post("/generate-tweets", authenticateToken, async (req, res) => {
     try {
         console.log("🔍 Asking OpenAI for tweets with requested length:", requestedLength, "Prompt:", promptContent);
         const response = await axios.post(url, data, { headers, timeout: 360000 });
-        console.log("✅ Got tweets from OpenAI - Raw Response:", response.data);
+        console.log("✅ Got tweets from OpenAI - Raw Response:", JSON.stringify(response.data, null, 2));
 
         let tweets = [];
         if (response.data.choices && response.data.choices[0] && response.data.choices[0].message && response.data.choices[0].message.content) {
@@ -260,11 +253,16 @@ app.post("/generate-tweets", authenticateToken, async (req, res) => {
         console.log("Final JSON response content:", responseContent);
         res.json({ choices: [{ message: { content: responseContent } }] });
     } catch (error) {
+        console.error("❌ Error with OpenAI - Full Error:", {
+            message: error.message,
+            code: error.code,
+            response: error.response ? error.response.data : 'No response data',
+            stack: error.stack
+        });
         if (error.code === 'ECONNABORTED') {
             console.error("❌ OpenAI took too long!");
             return res.status(504).json({ error: "Sorry, it’s taking too long—try again later!" });
         }
-        console.error("❌ Error with OpenAI:", error.response ? JSON.stringify(error.response.data) : error.message);
         res.status(500).json({ error: "Something broke—check server logs or OpenAI API key!" });
     }
 });
