@@ -24,15 +24,16 @@
     padding: 0;
 }
         .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-            background: transparent;
-            border-radius: 0;
-            box-shadow: none;
-            border: none;
-        }
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    box-sizing: border-box;
+}
 
         header {
     padding: 15px 0;
@@ -56,7 +57,8 @@
     position: absolute;
     top: 0;
     left: 5px;
-    margin: 0; /* Remove any potential margin */
+    margin: 0;
+    padding: 0;
     transition: transform 0.3s;
 }
 
@@ -70,16 +72,18 @@
     align-items: center;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 20px 0 60px; /* Increase padding-left slightly to ensure no overlap */
+    padding: 0 5px 0 60px; /* 5px padding-right for far-right alignment, 60px padding-left for logo space */
 }
 
         .login-signup {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 500;
-            font-size: 16px;
-            transition: color 0.3s, transform 0.3s;
-        }
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s, transform 0.3s;
+    margin: 0;
+    padding-right: 5px; /* Minimal padding to keep it close to the right edge */
+}
 
         .login-signup:hover {
             color: #016e0a;
