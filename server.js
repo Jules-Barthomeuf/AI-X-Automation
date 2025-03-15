@@ -120,8 +120,6 @@ app.use((req, res, next) => {
 // Generate tweets
 app.post("/generate-tweets", authenticateToken, async (req, res) => {
     console.log("✅ Someone wants tweets! Raw headers:", req.headers);
-
-    // Log the raw request body to debug parsing
     console.log("Raw request body:", JSON.stringify(req.body, null, 2));
 
     const rawBody = req.body;
@@ -139,7 +137,7 @@ app.post("/generate-tweets", authenticateToken, async (req, res) => {
         return res.status(400).json({ error: "Tweet sample must be 280 characters or fewer." });
     }
 
-    let requestedLength = 10; // Default to 10 for Tweet Mode
+    let requestedLength = 10;
     console.log("Initial mode value:", mode, "Type of mode:", typeof mode, "Trimmed mode:", mode ? mode.trim() : 'undefined');
     if (mode && typeof mode === 'string' && mode.trim().toLowerCase() === 'thread') {
         console.log("Mode is 'thread', proceeding with tweetLength validation");
@@ -162,7 +160,6 @@ app.post("/generate-tweets", authenticateToken, async (req, res) => {
         console.log("Mode is not 'thread' or invalid, using default length:", requestedLength, "Mode received:", JSON.stringify(mode));
     }
 
-    // Tone instructions
     let toneInstructions = "";
     if (tone) {
         switch (tone.toLowerCase()) {
@@ -215,13 +212,13 @@ app.post("/generate-tweets", authenticateToken, async (req, res) => {
                 content: `${promptContent}${sampleTweet ? `\nTweet Sample: ${sampleTweet}` : ''}` 
             }
         ],
-        max_tokens: 4096,
+        max_tokens: 2048, // Reduced to avoid timeout
         temperature: 1.0,
     };
 
     try {
         console.log("🔍 Asking OpenAI for tweets with requested length:", requestedLength, "Prompt:", promptContent);
-        const response = await axios.post(url, data, { headers, timeout: 360000 });
+        const response = await axios.post(url, data, { headers, timeout: 600000 }); // Increased timeout to 10 minutes
         console.log("✅ Got tweets from OpenAI - Raw Response:", JSON.stringify(response.data, null, 2));
 
         let tweets = [];
