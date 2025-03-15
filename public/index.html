@@ -34,40 +34,40 @@
         }
 
         header {
-            padding: 15px 0;
-            background: #000000;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
-            box-sizing: border-box;
-        }
+    padding: 15px 0;
+    background: #000000;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    position: relative; /* Make header the positioning context for the logo */
+}
 
         .logo {
-            font-weight: 700;
-            font-size: 28px;
-            color: #ffffff;
-            text-shadow: 12px rgba(255, 255, 255, 0.6);
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding-left: 2px;
-            transition: transform 0.3s;
-        }
+    font-weight: 700;
+    font-size: 28px;
+    color: #ffffff;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+    position: absolute;
+    top: 0;
+    left: 5px; /* Directly set to 5px from the left edge of the header */
+    transition: transform 0.3s;
+}
 
         .logo:hover {
             transform: scale(1.05);
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+       nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px 0 50px; /* Add padding-left to account for the logo width */
+}
 
         .login-signup {
             text-decoration: none;
