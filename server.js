@@ -92,7 +92,8 @@ app.use(cors({
     origin: [
         'http://localhost:3003',
         'http://127.0.0.1:3003',
-        'https://*.app.github.dev'
+        'https://*.app.github.dev',
+        'https://adaistra-k8kn.onrender.com' // Add Render frontend origin
     ],
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
