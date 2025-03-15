@@ -14,76 +14,80 @@
         }
 
         body {
-    font-family: 'Montserrat', sans-serif;
-    background: #000000;
-    color: #ffffff;
-    line-height: 1.6;
-    overflow-x: hidden;
-    min-height: 100vh;
-    margin: 0; /* Ensure no margin shifts the layout */
-    padding: 0;
-}
+            font-family: 'Montserrat', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
         .container {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 20px;
-    width: 100%;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
-    border: none;
-    box-sizing: border-box;
-}
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            box-sizing: border-box;
+        }
 
         header {
-    padding: 15px 0;
-    margin: 0; /* Ensure no margin shifts the header */
-    background: #000000;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0; /* Ensure header starts at the viewport's left edge */
-    z-index: 1000;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
-    box-sizing: border-box;
-    position: relative;
-}
+            padding: 15px 0;
+            margin: 0;
+            background: #000000;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+            box-sizing: border-box;
+        }
 
         .logo {
-    font-weight: 700;
-    font-size: 28px;
-    color: #ffffff;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-    position: absolute;
-    top: 0;
-    left: 5px;
-    margin: 0;
-    padding: 0;
-    transition: transform 0.3s;
-}
+            font-weight: 700;
+            font-size: 28px;
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+            position: absolute;
+            top: 15px; /* Align with header padding */
+            left: 5px;
+            margin: 0;
+            padding: 0;
+            transition: transform 0.3s;
+        }
 
         .logo:hover {
             transform: scale(1.05);
         }
 
-       nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 5px 0 60px; /* 5px padding-right for far-right alignment, 60px padding-left for logo space */
-}
+        nav {
+            display: flex;
+            justify-content: flex-end; /* Default alignment to right */
+            align-items: center;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 5px; /* Minimal padding on right */
+            height: 100%; /* Ensure nav takes full height of header */
+        }
 
         .login-signup {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 16px;
-    transition: color 0.3s, transform 0.3s;
-    margin: 0;
-    padding-right: 5px; /* Minimal padding to keep it close to the right edge */
-}
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s, transform 0.3s;
+            margin: 0;
+            padding: 0 5px 0 0; /* 5px padding from the right edge */
+            position: absolute;
+            top: 15px; /* Align with header padding */
+            right: 5px; /* 5px from the right edge of the viewport */
+        }
 
         .login-signup:hover {
             color: #016e0a;
@@ -93,7 +97,7 @@
         .hero {
             text-align: center;
             padding: 80px 0 20px;
-            background: #000000; /* Solid black background */
+            background: #000000;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -111,7 +115,7 @@
 
         .hero h1 {
             font-weight: 700;
-            font-size: 48px; /* Reduced default size */
+            font-size: 48px;
             margin-bottom: 20px;
             color: #ffffff;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
@@ -216,7 +220,7 @@
             display: block;
             width: 100%;
             max-width: 400px;
-            margin: 15px auto; /* Centered with spacing */
+            margin: 15px auto;
             transition: transform 0.6s, box-shadow 0.6s;
             border-radius: 150px;
             box-sizing: border-box;
@@ -558,7 +562,7 @@
 
             .logo {
                 font-size: 22px;
-                margin-left: 5px;
+                top: 10px; /* Adjust for smaller header padding */
             }
 
             .login-signup {
@@ -570,7 +574,7 @@
             }
 
             .hero h1 {
-                font-size: 32px; /* Smaller title on mobile */
+                font-size: 32px;
             }
 
             .hero p {
@@ -661,7 +665,7 @@
 
         @media (max-width: 100%) {
             .hero h1 {
-                font-size: 28px; /* Even smaller for very small screens */
+                font-size: 28px;
             }
 
             .hero p {
@@ -726,7 +730,7 @@
 
         @media (min-width: 1025px) {
             .login-signup {
-                margin-right: 40px;
+                display: block; /* Ensure it shows on larger screens */
             }
         }
     </style>
