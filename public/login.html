@@ -297,11 +297,11 @@
             console.log('Attempting login with:', { email, password });
             if (email && password) {
                 try {
-                    const response = await fetch('https://scaling-memory-r4prqg6v7qw934wj-3003.app.github.dev/login', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email, password }),
-                    });
+                    const response = await fetch('https://adaistra-k8kn.onrender.com/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+});
                     console.log('Fetch response status:', response.status);
                     const data = await response.json();
                     console.log('Fetch response data:', data);
