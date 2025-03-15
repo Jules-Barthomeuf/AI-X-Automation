@@ -35,14 +35,16 @@
 
         header {
     padding: 15px 0;
+    margin: 0; /* Ensure no margin shifts the header */
     background: #000000;
     position: fixed;
     width: 100%;
     top: 0;
+    left: 0; /* Ensure header starts at the viewport's left edge */
     z-index: 1000;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
     box-sizing: border-box;
-    position: relative; /* Make header the positioning context for the logo */
+    position: relative;
 }
 
         .logo {
@@ -52,7 +54,8 @@
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
     position: absolute;
     top: 0;
-    left: 5px; /* Directly set to 5px from the left edge of the header */
+    left: 5px;
+    margin: 0; /* Remove any potential margin */
     transition: transform 0.3s;
 }
 
@@ -66,7 +69,7 @@
     align-items: center;
     max-width: 1440px;
     margin: 0 auto;
-    padding: 0 20px 0 50px; /* Add padding-left to account for the logo width */
+    padding: 0 20px 0 60px; /* Increase padding-left slightly to ensure no overlap */
 }
 
         .login-signup {
