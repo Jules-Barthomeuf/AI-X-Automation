@@ -561,298 +561,295 @@
     <div id="copyPopup" class="popup"></div>
 
     <script>
-        let currentMode = 'tweet';
-        let authToken = localStorage.getItem('authToken') || localStorage.getItem('token') || null;
+    let currentMode = 'tweet';
+    let authToken = localStorage.getItem('authToken') || localStorage.getItem('token') || null;
 
-        function isLoggedIn() {
-            return !!authToken;
-        }
+    function isLoggedIn() {
+        return !!authToken;
+    }
 
-        function setAuthToken(token) {
-            authToken = token;
-            localStorage.setItem('authToken', token);
-        }
+    function setAuthToken(token) {
+        authToken = token;
+        localStorage.setItem('authToken', token);
+    }
 
-        function toggleMode() {
-            currentMode = currentMode === 'tweet' ? 'thread' : 'tweet';
-            const toggleKnob = document.getElementById('toggleKnob');
-            const threadOption = document.querySelector('.thread-option');
-            const threadLengthSelect = document.getElementById('threadLength');
+    function toggleMode() {
+        currentMode = currentMode === 'tweet' ? 'thread' : 'tweet';
+        const toggleKnob = document.getElementById('toggleKnob');
+        const threadOption = document.querySelector('.thread-option');
+        const threadLengthSelect = document.getElementById('threadLength');
 
-            toggleKnob.classList.add('mode-switching');
-            setTimeout(() => toggleKnob.classList.remove('mode-switching'), 800);
+        toggleKnob.classList.add('mode-switching');
+        setTimeout(() => toggleKnob.classList.remove('mode-switching'), 800);
 
-            if (currentMode === 'tweet') {
-                toggleKnob.className = 'toggle-knob tweet-mode';
-                toggleKnob.textContent = 'Tweet Mode';
-                threadOption.style.display = 'none';
-            } else {
-                toggleKnob.className = 'toggle-knob thread-mode';
-                toggleKnob.textContent = 'Threads Mode';
-                threadOption.style.display = 'grid';
-                if (!threadLengthSelect.value) {
-                    threadLengthSelect.value = '5'; // Default to 5 tweets
-                }
-            }
-            console.log("Mode switched to:", currentMode);
-        }
-
-        function toggleNavMenu() {
-            const navButton = document.querySelector('.nav-button');
-            const navMenu = document.getElementById('navMenu');
-            navButton.classList.toggle('active');
-            navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
-        }
-
-        document.addEventListener('click', function(event) {
-            const navButton = document.querySelector('.nav-button');
-            const navMenu = document.getElementById('navMenu');
-            if (!navButton.contains(event.target) && !navMenu.contains(event.target)) {
-                navButton.classList.remove('active');
-                navMenu.style.display = 'none';
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleKnob = document.getElementById('toggleKnob');
-            const threadOption = document.querySelector('.thread-option');
+        if (currentMode === 'tweet') {
             toggleKnob.className = 'toggle-knob tweet-mode';
             toggleKnob.textContent = 'Tweet Mode';
             threadOption.style.display = 'none';
-
-            console.log('Initial authToken:', authToken);
-        });
-
-        async function generateTweets() {
-            if (!isLoggedIn()) {
-                document.getElementById('authPopup').style.display = 'block';
-                console.log('Not logged in, showing auth popup');
-                return;
+        } else {
+            toggleKnob.className = 'toggle-knob thread-mode';
+            toggleKnob.textContent = 'Threads Mode';
+            threadOption.style.display = 'grid';
+            if (!threadLengthSelect.value) {
+                threadLengthSelect.value = '5'; // Default to 5 tweets
             }
+        }
+        console.log("Mode switched to:", currentMode);
+    }
 
-            console.log("Generating tweets... Initial check passed");
-            const mode = currentMode;
-            const topic = document.getElementById('topic').value;
-            const tone = document.getElementById('tone').value || "";
-            const sampleTweet = document.getElementById('tweetSample').value || "";
-            const customPrompt = document.getElementById('customPrompt').value;
-            const tweetCount = 10; // Fixed to 10 tweets for Tweet Mode
-            const threadLengthSelect = document.getElementById('threadLength');
-            const threadLengthValue = threadLengthSelect ? threadLengthSelect.value : '5'; // Default to 5 if not set
-            const threadLength = mode === 'thread' ? Number(threadLengthValue) : tweetCount;
+    function toggleNavMenu() {
+        const navButton = document.querySelector('.nav-button');
+        const navMenu = document.getElementById('navMenu');
+        navButton.classList.toggle('active');
+        navMenu.style.display = navMenu.style.display === 'block' ? 'none' : 'block';
+    }
 
-            console.log("Thread Length - Raw Value:", threadLengthValue, "Parsed Value:", threadLength, "Type:", typeof threadLength);
+    document.addEventListener('click', function(event) {
+        const navButton = document.querySelector('.nav-button');
+        const navMenu = document.getElementById('navMenu');
+        if (!navButton.contains(event.target) && !navMenu.contains(event.target)) {
+            navButton.classList.remove('active');
+            navMenu.style.display = 'none';
+        }
+    });
 
-            if (!topic) {
-                showPopup("Please provide a topic!", true);
-                console.log('Validation failed: No topic');
-                return;
-            }
-            if (mode === 'thread' && (isNaN(threadLength) || threadLength < 3 || threadLength > 10)) {
-                showPopup("Thread length must be 3–10!", true);
-                console.log('Validation failed: Invalid thread length:', threadLength);
-                return;
-            }
-            if (sampleTweet && sampleTweet.length > 280) {
-                showPopup("Tweet sample max 280 chars!", true);
-                console.log('Validation failed: Sample too long');
-                return;
-            }
+    document.addEventListener('DOMContentLoaded', () => {
+        const toggleKnob = document.getElementById('toggleKnob');
+        const threadOption = document.querySelector('.thread-option');
+        toggleKnob.className = 'toggle-knob tweet-mode';
+        toggleKnob.textContent = 'Tweet Mode';
+        threadOption.style.display = 'none';
 
-            const loadingDiv = document.getElementById('loading');
-            loadingDiv.style.display = 'block';
-            document.getElementById('tweets').innerHTML = '';
-            document.getElementById('saveButton').style.display = 'none';
-            document.getElementById('downloadButton').style.display = 'none';
+        console.log('Initial authToken:', authToken);
+    });
 
-            try {
-                console.log("Sending request to /generate-tweets with:", { mode, topic, tone, sampleTweet, customPrompt, tweetLength: threadLength });
-                const requestBody = { 
-                    mode, 
-                    topic, 
-                    tone, 
-                    sampleTweet, 
-                    customPrompt, 
-                    tweetLength: threadLength // Explicitly use the calculated threadLength
-                };
-                console.log("Final request body:", requestBody); // Debug the final body
-                const potentialUrls = [
-                    'https://scaling-memory-r4prqg6v7qw934wj-3003.app.github.dev/generate-tweets'
-                ];
-                let response;
-                for (const url of potentialUrls) {
-                    try {
-                        console.log(`Attempting fetch from ${url} with request body:`, requestBody, "Type of tweetLength:", typeof requestBody.tweetLength);
+    async function generateTweets() {
+        if (!isLoggedIn()) {
+            document.getElementById('authPopup').style.display = 'block';
+            console.log('Not logged in, showing auth popup');
+            return;
+        }
 
-                        if (isNaN(requestBody.tweetLength)) {
-                            console.error("Error: tweetLength is NaN, defaulting to 10");
-                            requestBody.tweetLength = 10;
-                        }
+        console.log("Generating tweets... Initial check passed");
+        const mode = currentMode;
+        const topic = document.getElementById('topic').value;
+        const tone = document.getElementById('tone').value || "";
+        const sampleTweet = document.getElementById('tweetSample').value || "";
+        const customPrompt = document.getElementById('customPrompt').value;
+        const tweetCount = 10;
+        const threadLengthSelect = document.getElementById('threadLength');
+        const threadLengthValue = threadLengthSelect ? threadLengthSelect.value : '5';
+        const threadLength = mode === 'thread' ? Number(threadLengthValue) : tweetCount;
 
-                        const controller = new AbortController();
-                        const timeoutId = setTimeout(() => controller.abort(), 360000);
-                        response = await fetch(url, {
-                            method: 'POST',
-                            headers: { 
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer ${authToken}`
-                            },
-                            body: JSON.stringify(requestBody),
-                            mode: 'cors',
-                            cache: 'no-cache',
-                            credentials: 'same-origin',
-                            signal: controller.signal
-                        });
-                        clearTimeout(timeoutId);
-                        if (response.ok) {
-                            console.log(`Successfully fetched from ${url} with status ${response.status}`);
-                        } else {
-                            const errorText = `Server error: ${response.status} - ${response.statusText}`;
-                            console.warn(`Response from ${url} not OK, status: ${response.status}, Message: ${errorText}`);
-                            throw new Error(errorText);
-                        }
-                        break;
-                    } catch (fetchError) {
-                        console.error(`Failed to fetch from ${url}:`, fetchError);
-                        continue;
-                    }
-                }
-                if (!response) {
-                    throw new Error('All server URLs failed—check server status.');
-                }
-                const responseText = await response.text();
-                let data;
+        console.log("Thread Length - Raw Value:", threadLengthValue, "Parsed Value:", threadLength, "Type:", typeof threadLength);
+
+        if (!topic) {
+            showPopup("Please provide a topic!", true);
+            console.log('Validation failed: No topic');
+            return;
+        }
+        if (mode === 'thread' && (isNaN(threadLength) || threadLength < 3 || threadLength > 10)) {
+            showPopup("Thread length must be 3–10!", true);
+            console.log('Validation failed: Invalid thread length:', threadLength);
+            return;
+        }
+        if (sampleTweet && sampleTweet.length > 280) {
+            showPopup("Tweet sample max 280 chars!", true);
+            console.log('Validation failed: Sample too long');
+            return;
+        }
+
+        const loadingDiv = document.getElementById('loading');
+        loadingDiv.style.display = 'block';
+        document.getElementById('tweets').innerHTML = '';
+        document.getElementById('saveButton').style.display = 'none';
+        document.getElementById('downloadButton').style.display = 'none';
+
+        try {
+            console.log("Sending request to /generate-tweets with:", { mode, topic, tone, sampleTweet, customPrompt, tweetLength: threadLength });
+            const requestBody = { mode, topic, tone, sampleTweet, customPrompt, tweetLength: threadLength };
+            console.log("Final request body:", requestBody);
+            const potentialUrls = [
+                'https://adaistra-k8kn.onrender.com/generate-tweets' // Corrected to Render URL
+            ];
+            let response;
+            for (const url of potentialUrls) {
                 try {
-                    data = JSON.parse(responseText);
-                    console.log('Parsed data:', data);
-                } catch (e) {
-                    throw new Error('Invalid JSON response from server: ' + responseText);
-                }
+                    console.log(`Attempting fetch from ${url} with request body:`, requestBody, "Type of tweetLength:", typeof requestBody.tweetLength);
 
-                if (response.ok) {
-                    const tweetsDiv = document.getElementById('tweets');
-                    let tweets = [];
-
-                    if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
-                        console.log("Raw content from OpenAI (", mode, "Mode):", data.choices[0].message.content);
-                        const rawLines = data.choices[0].message.content.split('\n');
-                        console.log("Raw lines count:", rawLines.length, "Raw lines:", rawLines);
-                        tweets = rawLines
-                            .map(line => line.trim())
-                            .filter(line => line.length > 0) // Remove empty lines
-                            .map((line, index) => `${index + 1}. ${line}`); // Add numbering directly
-
-                        console.log("Processed tweets count in", mode, "Mode:", tweets.length, "Processed tweets:", tweets);
-                    } else if (data.text) {
-                        console.log("Fallback content from server (", mode, "Mode):", data.text);
-                        tweets = data.text.split('\n')
-                            .map(line => line.trim())
-                            .filter(line => line.length > 0)
-                            .map((line, index) => `${index + 1}. ${line}`); // Add numbering
-                        console.log("Processed fallback tweets count in", mode, "Mode:", tweets.length, "Processed tweets:", tweets);
-                    } else {
-                        console.warn("No valid content in response for", mode, "Mode:", data);
+                    if (isNaN(requestBody.tweetLength)) {
+                        console.error("Error: tweetLength is NaN, defaulting to 10");
+                        requestBody.tweetLength = 10;
                     }
 
-                    if (tweets.length > 0) {
-                        tweets.forEach((tweet) => {
-                            const tweetDiv = document.createElement('div');
-                            tweetDiv.className = mode === 'thread' ? 'thread-tweet' : 'tweet';
-                            tweetDiv.textContent = tweet;
-                            tweetDiv.onclick = () => copyToClipboard(tweet.replace(/^\d+\.\s/, '')); // Remove numbering for clipboard
-                            tweetsDiv.appendChild(tweetDiv);
-                        });
-                        console.log("Rendered tweets count in", mode, "Mode:", tweets.length);
-                        document.getElementById('saveButton').style.display = 'block';
-                        document.getElementById('downloadButton').style.display = 'block';
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 360000);
+                    response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${authToken}`
+                        },
+                        body: JSON.stringify(requestBody),
+                        mode: 'cors',
+                        cache: 'no-cache',
+                        credentials: 'same-origin',
+                        signal: controller.signal
+                    });
+                    clearTimeout(timeoutId);
+                    console.log(`Fetch response status: ${response.status}`);
+                    if (response.ok) {
+                        console.log(`Successfully fetched from ${url} with status ${response.status}`);
                     } else {
-                        tweetsDiv.innerHTML = '<p>No tweets generated. Try a different topic or prompt.</p>';
-                        console.error("No valid tweets generated after processing in", mode, "Mode. OpenAI response:", data);
+                        const errorText = `Server error: ${response.status} - ${response.statusText}`;
+                        console.warn(`Response from ${url} not OK, status: ${response.status}, Message: ${errorText}`);
+                        throw new Error(errorText);
                     }
-                } else {
-                    document.getElementById('tweets').innerHTML = `<p>Error: ${data.error || 'Failed to generate tweets!'}</p>`;
-                    console.error("API Error in", mode, "Mode:", data.error);
+                    break;
+                } catch (fetchError) {
+                    console.error(`Failed to fetch from ${url}:`, fetchError.message, fetchError.stack);
+                    continue;
                 }
-            } catch (error) {
-                if (error.message.includes('401') || error.message.includes('403')) {
-                    localStorage.removeItem('authToken');
-                    document.getElementById('authPopup').style.display = 'block';
-                    console.log('Authentication failed, token cleared');
-                } else if (error.name === 'AbortError') {
-                    console.error('Request timed out in', mode, 'Mode:', error);
-                    document.getElementById('tweets').innerHTML = '<p>Request timed out. Please try again.</p>';
+            }
+            if (!response) {
+                throw new Error('All server URLs failed—check server status.');
+            }
+            const responseText = await response.text();
+            console.log('Raw response text:', responseText);
+            let data;
+            try {
+                data = JSON.parse(responseText);
+                console.log('Parsed data:', data);
+            } catch (e) {
+                console.error('JSON parse error:', e);
+                throw new Error('Invalid JSON response from server: ' + responseText);
+            }
+
+            if (response.ok) {
+                const tweetsDiv = document.getElementById('tweets');
+                let tweets = [];
+
+                if (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content) {
+                    console.log("Raw content from OpenAI (", mode, "Mode):", data.choices[0].message.content);
+                    const rawLines = data.choices[0].message.content.split('\n');
+                    console.log("Raw lines count:", rawLines.length, "Raw lines:", rawLines);
+                    tweets = rawLines
+                        .map(line => line.trim())
+                        .filter(line => line.length > 0)
+                        .map((line, index) => `${index + 1}. ${line}`);
+
+                    console.log("Processed tweets count in", mode, "Mode:", tweets.length, "Processed tweets:", tweets);
+                } else if (data.text) {
+                    console.log("Fallback content from server (", mode, "Mode):", data.text);
+                    tweets = data.text.split('\n')
+                        .map(line => line.trim())
+                        .filter(line => line.length > 0)
+                        .map((line, index) => `${index + 1}. ${line}`);
+                    console.log("Processed fallback tweets count in", mode, "Mode:", tweets.length, "Processed tweets:", tweets);
                 } else {
-                    console.error("Fetch error in", mode, "Mode:", error);
-                    document.getElementById('tweets').innerHTML = `<p>Error: ${error.message || 'Something went wrong!'}</p>`;
+                    console.warn("No valid content in response for", mode, "Mode:", data);
                 }
-            } finally {
-                loadingDiv.style.display = 'none';
-            }
-        }
 
-        function goToSignup() {
-            window.location.href = '/signup.html?redirect=/tweet_generator.html';
-            document.getElementById('authPopup').style.display = 'none';
-        }
-
-        window.addEventListener('message', (event) => {
-            if (event.origin !== window.location.origin) return;
-            if (event.data.token) {
-                setAuthToken(event.data.token);
-                const redirect = new URLSearchParams(window.location.search).get('redirect') || '/tweet_generator.html';
-                window.location.href = redirect;
-                console.log('Token received, redirecting to:', redirect);
-            }
-        });
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                showPopup("Tweet copied to clipboard!");
-            }).catch(err => {
-                showPopup("Failed to copy tweet.", true);
-                console.error("Clipboard error:", err);
-            });
-        }
-
-        function showPopup(message, isError = false) {
-            const popup = document.getElementById('copyPopup');
-            popup.textContent = message;
-            popup.className = 'popup' + (isError ? ' error' : '');
-            popup.style.display = 'block';
-            setTimeout(() => {
-                popup.style.display = 'none';
-            }, 2000);
-        }
-
-        function saveTweets() {
-            const tweets = Array.from(document.querySelectorAll('.tweet, .thread-tweet')).map(t => t.textContent.replace(/^\d+\.\s/, ''));
-            localStorage.setItem('savedTweets', JSON.stringify(tweets));
-            showPopup("Tweets saved for later!");
-        }
-
-        function downloadCSV() {
-            const tweets = Array.from(document.querySelectorAll('.tweet, .thread-tweet')).map(t => t.textContent.replace(/^\d+\.\s/, ''));
-            const csv = tweets.join('\n');
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'tweets.csv';
-            a.click();
-            window.URL.revokeObjectURL(url);
-            showPopup("Tweets downloaded as CSV!");
-        }
-
-        function submitFeedback() {
-            const feedback = document.getElementById('feedbackInput').value;
-            if (feedback.trim()) {
-                console.log('Feedback submitted:', feedback);
-                document.getElementById('feedbackInput').value = '';
-                showPopup("Thank you for your feedback!");
+                if (tweets.length > 0) {
+                    tweets.forEach((tweet) => {
+                        const tweetDiv = document.createElement('div');
+                        tweetDiv.className = mode === 'thread' ? 'thread-tweet' : 'tweet';
+                        tweetDiv.textContent = tweet;
+                        tweetDiv.onclick = () => copyToClipboard(tweet.replace(/^\d+\.\s/, ''));
+                        tweetsDiv.appendChild(tweetDiv);
+                    });
+                    console.log("Rendered tweets count in", mode, "Mode:", tweets.length);
+                    document.getElementById('saveButton').style.display = 'block';
+                    document.getElementById('downloadButton').style.display = 'block';
+                } else {
+                    tweetsDiv.innerHTML = '<p>No tweets generated. Try a different topic or prompt.</p>';
+                    console.error("No valid tweets generated after processing in", mode, "Mode. OpenAI response:", data);
+                }
             } else {
-                showPopup("Please enter feedback!", true);
+                document.getElementById('tweets').innerHTML = `<p>Error: ${data.error || 'Failed to generate tweets!'}</p>`;
+                console.error("API Error in", mode, "Mode:", data.error);
             }
+        } catch (error) {
+            console.error("Final catch block error:", error.message, error.stack);
+            if (error.message.includes('401') || error.message.includes('403')) {
+                localStorage.removeItem('authToken');
+                document.getElementById('authPopup').style.display = 'block';
+                console.log('Authentication failed, token cleared');
+            } else if (error.name === 'AbortError') {
+                console.error('Request timed out in', mode, 'Mode:', error);
+                document.getElementById('tweets').innerHTML = '<p>Request timed out. Please try again.</p>';
+            } else {
+                console.error("Fetch error in", mode, "Mode:", error);
+                document.getElementById('tweets').innerHTML = `<p>Error: ${error.message || 'Something went wrong!'}</p>`;
+            }
+        } finally {
+            loadingDiv.style.display = 'none';
         }
-    </script>
+    }
+
+    function goToSignup() {
+        window.location.href = '/signup.html?redirect=/tweet_generator.html';
+        document.getElementById('authPopup').style.display = 'none';
+    }
+
+    window.addEventListener('message', (event) => {
+        if (event.origin !== window.location.origin) return;
+        if (event.data.token) {
+            setAuthToken(event.data.token);
+            const redirect = new URLSearchParams(window.location.search).get('redirect') || '/tweet_generator.html';
+            window.location.href = redirect;
+            console.log('Token received, redirecting to:', redirect);
+        }
+    });
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            showPopup("Tweet copied to clipboard!");
+        }).catch(err => {
+            showPopup("Failed to copy tweet.", true);
+            console.error("Clipboard error:", err);
+        });
+    }
+
+    function showPopup(message, isError = false) {
+        const popup = document.getElementById('copyPopup');
+        popup.textContent = message;
+        popup.className = 'popup' + (isError ? ' error' : '');
+        popup.style.display = 'block';
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 2000);
+    }
+
+    function saveTweets() {
+        const tweets = Array.from(document.querySelectorAll('.tweet, .thread-tweet')).map(t => t.textContent.replace(/^\d+\.\s/, ''));
+        localStorage.setItem('savedTweets', JSON.stringify(tweets));
+        showPopup("Tweets saved for later!");
+    }
+
+    function downloadCSV() {
+        const tweets = Array.from(document.querySelectorAll('.tweet, .thread-tweet')).map(t => t.textContent.replace(/^\d+\.\s/, ''));
+        const csv = tweets.join('\n');
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'tweets.csv';
+        a.click();
+        window.URL.revokeObjectURL(url);
+        showPopup("Tweets downloaded as CSV!");
+    }
+
+    function submitFeedback() {
+        const feedback = document.getElementById('feedbackInput').value;
+        if (feedback.trim()) {
+            console.log('Feedback submitted:', feedback);
+            document.getElementById('feedbackInput').value = '';
+            showPopup("Thank you for your feedback!");
+        } else {
+            showPopup("Please enter feedback!", true);
+        }
+    }
+</script>
 </body>
 </html>
